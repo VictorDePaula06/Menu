@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Boua</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Font Awesome for social media icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo-container">
+                <img src="/imagens/logo3.png" class="logo">
+            </div>
+
+            <!-- Desktop Menu -->
+            <div class="nav-menu">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#menu" class="nav-link">Menu</a>
+                <a href="#gallery" class="nav-link">Galeria</a>
+                <a href="#about" class="nav-link">Sobre</a>
+                <a href="#contact" class="nav-link">Contato</a>
+                <button class="reserve-btn">Reservar Mesa</button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-btn">
+                <span class="hamburger"></span>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu">
+            <a href="#home" class="mobile-link">Home</a>
+            <a href="#menu" class="mobile-link">Menu</a>
+            <a href="#gallery" class="mobile-link">Galeria</a>
+            <a href="#about" class="mobile-link">Sobre</a>
+            <a href="#contact" class="mobile-link">Contato</a>
+            <button class="reserve-btn mobile">Reservar Mesa</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>experimente refeições requintadas no seu melhor</h1>
+            <p>Vem ficar #TheBoua</p>
+            <div class="hero-buttons">
+                <button class="primary-btn">Reservar Mesa<span class="arrow">→</span></button>
+                <button class="secondary-btn">Ver Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>Nossa Casa</h2>
+        <div class="gallery-grid">
+            <!-- Gallery images will be inserted here by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Menu Categories -->
+    <section class="menu-categories" id="menu">
+        <h2>Nosso Cardápio</h2>
+        
+        <!-- Menu Navigation -->
+        <div class="menu-nav">
+            <button class="menu-nav-btn active" data-category="especiais">Especiais da Casa</button>
+            <button class="menu-nav-btn" data-category="chopp">Chopps Artesanais</button>
+            <button class="menu-nav-btn" data-category="bebidas">Bebidas</button>
+            <button class="menu-nav-btn" data-category="pratos">Pratos Principais</button>
+            <button class="menu-nav-btn" data-category="sobremesas">Sobremesas</button>
+        </div>
+
+        <!-- Menu Content -->
+        <div class="menu-content">
+            <div class="menu-section active" id="especiais">
+                <div class="specials-grid">
+                    <!-- Special dishes will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="menu-section" id="chopp">
+                <div class="menu-grid">
+                    <!-- Chopp items will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="menu-section" id="bebidas">
+                <div class="menu-grid">
+                    <!-- Drinks will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="menu-section" id="pratos">
+                <div class="menu-grid">
+                    <!-- Main dishes will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <div class="menu-section" id="sobremesas">
+                <div class="menu-grid">
+                    <!-- Desserts will be inserted here by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Localização</h4>
+                    <p>Rua Example, 123</p>
+                    <p>Bairro - Cidade/UF</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contato</h4>
+                    <div class="social-links">
+                        <a href="https://instagram.com/theboua" target="_blank" class="social-link">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://wa.me/5511999999999" target="_blank" class="social-link">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        <a href="https://maps.google.com" target="_blank" class="social-link">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Horário</h4>
+                    <p>Seg - Sex: 11h às 23h</p>
+                    <p>Sáb - Dom: 11h às 00h</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 The Boua Kitchen Bar. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
