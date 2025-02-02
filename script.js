@@ -65,35 +65,35 @@ const menuData = {
             name: 'Pudim de Leite',
             description: 'Pudim cremoso com calda de caramelo',
             price: 20,
-            image: '/imagens/pudim.jpeg'
+            image: 'imagens/pudim.jpeg'
         },
         {
             id: 2,
             name: 'Sorvete',
             description: 'Pudim cremoso com calda de caramelo',
             price: 20,
-            image: '/imagens/sorvete.jpeg'
+            image: 'imagens/sorvete.jpeg'
         },
         {
             id: 3,
             name: 'Brownie',
             description: 'Pudim cremoso com calda de caramelo',
             price: 20,
-            image: '/imagens/brownie.jpeg'
+            image: 'imagens/brownie.jpeg'
         },
         {
             id: 4,
             name: 'Churros',
             description: 'Pudim cremoso com calda de caramelo',
             price: 20,
-            image: '/imagens/churros.jpeg'
+            image: 'imagens/churros.jpeg'
         },
         {
             id: 5,
             name: 'Petit Gâteua',
             description: 'Pudim cremoso com calda de caramelo',
             price: 20,
-            image: '/imagens/pt.jpeg'
+            image: 'imagens/pt.jpeg'
         },
 
     ]
