@@ -6,7 +6,7 @@ const menuData = {
             name: 'Risoto de Trufas',
             description: 'Arroz Arbório cremoso com trufa negra e parmesão envelhecido',
             price: 28,
-            image: 'https://images.unsplash.com/photo-1673421161165-c4fb04a2a583?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+            image: 'imagens/risoto.jpeg',
             discount: 15
         },
         {
@@ -21,7 +21,7 @@ const menuData = {
             name: 'Lagosta Thermidor',
             description: 'Lagosta fresca do Maine em molho cremoso de conhaque',
             price: 65,
-            image: 'https://images.unsplash.com/photo-1533682440656-6a20b8267c41?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+            image: 'imagens/lagosta.jpeg',
             discount: 10
         }
     ],
@@ -35,11 +35,26 @@ const menuData = {
         },
         {
             id: 2,
-            name: 'Stout Cremoso',
-            description: 'Chopp escuro com notas de café e chocolate',
+            name: 'Fizzy',
+            description: 'Fizzy é uma bebida mista que combina o melhor de dois mundos, o da cevada e o da uva',
             price: 20,
-            image: 'https://images.unsplash.com/photo-1644333192059-70d04c1bbbd3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-        }
+            image: 'imagens/fizzy.jpeg'
+        },
+        {
+            id: 3,
+            name: 'Colorado',
+            description: 'Cervaja Colorado ',
+            price: 20,
+            image: 'imagens/colorado.jpeg'
+        },
+     
+        {
+            id: 4,
+            name: 'Stout Cremoso',
+            description: 'Trela é uma gíria usada entre os mineiros e significa bate-papo, conversa despretensiosa. A Trela Pilsen é uma refrescante Cerveja Puro Malte com a qualidade Antuérpia',
+            price: 20,
+            image: 'imagens/trela.jpeg'
+        },
     ],
     bebidas: [
         {
@@ -48,16 +63,58 @@ const menuData = {
             description: 'Rum, hortelã fresca, limão e água com gás',
             price: 25,
             image: 'https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-        }
+        },
+        {
+            id: 2,
+            name: ' Blackberry Gin Feez',
+            description: 'Amoras, gim e limão são a combinação perfeita neste Blackberry Gin Fizz ',
+            price: 25,
+            image: 'imagens/gin.jpeg'
+        },
+        {
+            id: 3,
+            name: 'Caipirinha Classica',
+            description: 'Limão, Vodka e açucar',
+            price: 25,
+            image: 'imagens/caipirinha.jpeg'
+        },
+        {
+            id: 4,
+            name: 'Caipirinha Morango',
+            description: 'Morango, Vodka e açucar',
+            price: 25,
+            image: 'imagens/caipmorango.jpeg'
+        },
+        {
+            id: 5,
+            name: 'Negrone',
+            description: 'Gin, Campari, Vermuto Tinto, Laranja',
+            price: 25,
+            image: 'imagens/negrone.jpeg'
+        },
     ],
     pratos: [
         {
             id: 1,
             name: 'Baião de Dois',
             description: 'Arroz, feijão de corda, queijo coalho e carne de sol',
-            price: 45,
-            image: 'https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80'
-        }
+            price: 30,
+            image: 'imagens/baiao.jpeg'
+        },
+        {
+            id: 2,
+            name: 'Costelinha Com Barbecue',
+            description: 'Arroz, feijão de corda, queijo coalho e carne de sol',
+            price: 40,
+            image: 'imagens/costelinha.jpeg'
+        },
+        {
+            id: 3,
+            name: 'Parmegiana',
+            description: 'Arroz, feijão de corda, queijo coalho e carne de sol',
+            price: 25,
+            image: 'imagens/parmegiana.jpeg'
+        },
     ],
     sobremesas: [
         {
