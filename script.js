@@ -47,7 +47,6 @@ const menuData = {
             price: 20,
             image: 'imagens/colorado.jpeg'
         },
-     
         {
             id: 4,
             name: 'Stout Cremoso',
@@ -152,7 +151,26 @@ const menuData = {
             price: 20,
             image: 'imagens/pt.jpeg'
         },
-
+    ],
+    promocoes: [
+        {
+            id: 1,
+            name: 'Combo Família',
+            description: '1 Prato Principal + 4 Bebidas + 2 Sobremesas',
+            price: 150,
+            originalPrice: 200,
+            image: 'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+            discount: 25
+        },
+        {
+            id: 2,
+            name: 'Happy Hour',
+            description: '2 Chopps Artesanais + Porção',
+            price: 45,
+            originalPrice: 60,
+            image: 'https://images.unsplash.com/photo-1535958636474-b021ee887b13?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&q=80',
+            discount: 25
+        }
     ]
 };
 
@@ -175,11 +193,15 @@ const galleryData = [
     }
 ];
 
+// Cart state
+let cart = [];
+
 // Menu mobile
 document.addEventListener('DOMContentLoaded', function() {
     const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
     const mobileMenu = document.querySelector('.mobile-menu');
     const hamburger = document.querySelector('.hamburger');
+    const cartBadges = document.querySelectorAll('.cart-badge');
 
     // Mobile menu toggle
     mobileMenuBtn.addEventListener('click', function() {
@@ -204,6 +226,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize menu sections
     renderMenuSections();
 
+    // Initialize promotions
+    renderPromotions();
+
     // Menu navigation
     const menuNavBtns = document.querySelectorAll('.menu-nav-btn');
     const menuSections = document.querySelectorAll('.menu-section');
@@ -225,11 +250,140 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     });
+
+    // Cart functions
+    window.addToCart = function(category, itemId) {
+        const item = menuData[category].find(i => i.id === parseInt(itemId));
+        if (item) {
+            const cartItem = cart.find(i => i.id === item.id && i.category === category);
+            if (cartItem) {
+                cartItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...item,
+                    category,
+                    quantity: 1
+                });
+            }
+            updateCartBadge();
+            showCartNotification();
+        }
+    };
+
+    window.updateCartBadge = function() {
+        const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+        cartBadges.forEach(badge => {
+            badge.textContent = totalItems;
+            badge.style.display = totalItems > 0 ? 'flex' : 'none';
+        });
+    };
+
+    window.showCartNotification = function() {
+        const notification = document.createElement('div');
+        notification.className = 'cart-notification';
+        notification.textContent = 'Item adicionado ao carrinho!';
+        document.body.appendChild(notification);
+
+        setTimeout(() => {
+            notification.remove();
+        }, 2000);
+    };
+
+    window.openCart = function() {
+        const cartModal = document.createElement('div');
+        cartModal.className = 'cart-modal';
+        
+        let total = 0;
+        const cartContent = cart.map(item => {
+            const itemTotal = item.price * item.quantity;
+            total += itemTotal;
+            return `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}" class="cart-item-image">
+                    <div class="cart-item-details">
+                        <h3>${item.name}</h3>
+                        <p>R$ ${item.price.toFixed(2)} x ${item.quantity}</p>
+                    </div>
+                    <div class="cart-item-actions">
+                        <button onclick="updateQuantity('${item.category}', ${item.id}, ${item.quantity - 1})">-</button>
+                        <span>${item.quantity}</span>
+                        <button onclick="updateQuantity('${item.category}', ${item.id}, ${item.quantity + 1})">+</button>
+                    </div>
+                </div>
+            `;
+        }).join('');
+
+        cartModal.innerHTML = `
+            <div class="cart-modal-content">
+                <div class="cart-header">
+                    <h2>Seu Pedido</h2>
+                    <button onclick="closeCart()" class="close-cart">&times;</button>
+                </div>
+                <div class="cart-items">
+                    ${cart.length > 0 ? cartContent : '<p class="empty-cart">Seu carrinho está vazio</p>'}
+                </div>
+                ${cart.length > 0 ? `
+                    <div class="cart-footer">
+                        <div class="cart-total">
+                            <span>Total:</span>
+                            <span>R$ ${total.toFixed(2)}</span>
+                        </div>
+                        <button onclick="checkout()" class="checkout-btn">Finalizar Pedido</button>
+                    </div>
+                ` : ''}
+            </div>
+        `;
+
+        document.body.appendChild(cartModal);
+        document.body.style.overflow = 'hidden';
+    };
+
+    window.closeCart = function() {
+        const cartModal = document.querySelector('.cart-modal');
+        if (cartModal) {
+            cartModal.remove();
+            document.body.style.overflow = 'auto';
+        }
+    };
+
+    window.updateQuantity = function(category, itemId, newQuantity) {
+        const itemIndex = cart.findIndex(i => i.id === itemId && i.category === category);
+        if (itemIndex > -1) {
+            if (newQuantity <= 0) {
+                cart.splice(itemIndex, 1);
+            } else {
+                cart[itemIndex].quantity = newQuantity;
+            }
+            updateCartBadge();
+            openCart(); // Refresh cart modal
+        }
+    };
+
+    window.checkout = function() {
+        const phone = '5511999999999'; // Substitua pelo número do WhatsApp do restaurante
+        let message = 'Olá! Gostaria de fazer o seguinte pedido:\n\n';
+        
+        cart.forEach(item => {
+            message += `${item.quantity}x ${item.name} - R$ ${(item.price * item.quantity).toFixed(2)}\n`;
+        });
+
+        const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+        message += `\nTotal: R$ ${total.toFixed(2)}`;
+
+        const encodedMessage = encodeURIComponent(message);
+        window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+        
+        // Clear cart after checkout
+        cart = [];
+        updateCartBadge();
+        closeCart();
+    };
 });
 
 // Render gallery
 function renderGallery() {
     const galleryGrid = document.querySelector('.gallery-grid');
+    if (!galleryGrid) return;
     
     galleryData.forEach(item => {
         const galleryItem = document.createElement('div');
@@ -246,12 +400,45 @@ function renderGallery() {
     });
 }
 
+// Render promotions
+function renderPromotions() {
+    const promotionsGrid = document.querySelector('.promotions-grid');
+    if (!promotionsGrid) return;
+
+    menuData.promocoes.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'menu-card';
+        
+        card.innerHTML = `
+            <div class="menu-image">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="discount-badge">${item.discount}% OFF</div>
+            </div>
+            <div class="menu-content">
+                <h3 class="menu-title">${item.name}</h3>
+                <p class="menu-description">${item.description}</p>
+                <div class="menu-price">
+                    <span class="current-price">R$ ${item.price.toFixed(2)}</span>
+                    <span class="original-price">R$ ${item.originalPrice.toFixed(2)}</span>
+                </div>
+                <button onclick="addToCart('promocoes', ${item.id})" class="add-to-cart-btn">
+                    Adicionar ao Pedido
+                </button>
+            </div>
+        `;
+        
+        promotionsGrid.appendChild(card);
+    });
+}
+
 // Render menu sections
 function renderMenuSections() {
     Object.entries(menuData).forEach(([category, items]) => {
         const container = document.querySelector(`#${category} .menu-grid`) || 
                          document.querySelector(`#${category} .specials-grid`);
         
+        if (!container) return;
+
         items.forEach(item => {
             const card = document.createElement('div');
             card.className = category === 'especiais' ? 'special-card' : 'menu-card';
@@ -276,6 +463,9 @@ function renderMenuSections() {
                             <span class="original-price">R$ ${item.price.toFixed(2)}</span>
                         ` : ''}
                     </div>
+                    <button onclick="addToCart('${category}', ${item.id})" class="add-to-cart-btn">
+                        Adicionar ao Pedido
+                    </button>
                 </div>
             `;
             

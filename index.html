@@ -13,16 +13,21 @@
     <nav class="navbar">
         <div class="navbar-container">
             <div class="logo-container">
-                <img src="imagens/logo3.png" class="logo">
+                <img src="/imagens/logo3.png" class="logo">
             </div>
 
             <!-- Desktop Menu -->
             <div class="nav-menu">
                 <a href="#home" class="nav-link">Home</a>
                 <a href="#menu" class="nav-link">Menu</a>
+                <a href="#promocoes" class="nav-link">Promoções</a>
                 <a href="#gallery" class="nav-link">Galeria</a>
                 <a href="#about" class="nav-link">Sobre</a>
                 <a href="#contact" class="nav-link">Contato</a>
+                <button class="cart-btn" onclick="openCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="cart-badge">0</span>
+                </button>
                 <button class="reserve-btn">Reservar Mesa</button>
             </div>
 
@@ -31,13 +36,19 @@
                 <span class="hamburger"></span>
             </button>
         </div>
+
         <!-- Mobile Menu -->
         <div class="mobile-menu">
             <a href="#home" class="mobile-link">Home</a>
             <a href="#menu" class="mobile-link">Menu</a>
+            <a href="#promocoes" class="mobile-link">Promoções</a>
             <a href="#gallery" class="mobile-link">Galeria</a>
             <a href="#about" class="mobile-link">Sobre</a>
             <a href="#contact" class="mobile-link">Contato</a>
+            <button class="cart-btn mobile" onclick="openCart()">
+                <i class="fas fa-shopping-cart"></i>
+                <span class="cart-badge">0</span>
+            </button>
             <button class="reserve-btn mobile">Reservar Mesa</button>
         </div>
     </nav>
@@ -54,11 +65,11 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section class="gallery" id="gallery">
-        <h2>Nossa Casa</h2>
-        <div class="gallery-grid">
-            <!-- Gallery images will be inserted here by JavaScript -->
+    <!-- Promotions Section -->
+    <section class="promotions" id="promocoes">
+        <h2>Promoções Especiais</h2>
+        <div class="promotions-grid">
+            <!-- Promotions will be inserted here by JavaScript -->
         </div>
     </section>
 
@@ -106,6 +117,14 @@
                     <!-- Desserts will be inserted here by JavaScript -->
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="gallery">
+        <h2>Nossa Casa</h2>
+        <div class="gallery-grid">
+            <!-- Gallery images will be inserted here by JavaScript -->
         </div>
     </section>
 
